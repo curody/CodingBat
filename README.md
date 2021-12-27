@@ -1,1 +1,1 @@
-Uses Python 3.
+Select Solutions for [CodingBat](https://codingbat.com)
