@@ -14,6 +14,7 @@ import org.junit.jupiter.params.provider.MethodSource;
 
 import main.com.codingbat.functional2.No9;
 import main.com.codingbat.functional2.NoNeg;
+import main.com.codingbat.functional2.NoTeen;
 
 public class Functional2Test {
   static Stream<Arguments> NoNegTestSource() {
@@ -53,4 +54,26 @@ public class Functional2Test {
     var actual = No9.no9(nums);
     assertEquals(expected, actual);
   }
+
+  static Stream<Arguments> NoTeenTestSource() {
+    return Stream.of(
+      Arguments.of(Arrays.asList(12, 13, 19, 20), Arrays.asList(12, 20) ),
+      Arguments.of(Arrays.asList(1, 14, 1), Arrays.asList(1, 1) ),
+      Arguments.of(Arrays.asList(15), Arrays.asList() ),
+      Arguments.of(Arrays.asList(-15), Arrays.asList(-15) ),
+      Arguments.of(Arrays.asList(), Arrays.asList() ),
+      Arguments.of(Arrays.asList(0, 1, 2, -3), Arrays.asList(0, 1, 2, -3) ),
+      Arguments.of(Arrays.asList(15, 17, 19, 21, 19), Arrays.asList(21) ),
+      Arguments.of(Arrays.asList(-16, 2, 15, 3, 16, 25), Arrays.asList(-16, 2, 3, 25) )
+    );
+  }
+
+  @ParameterizedTest
+  @MethodSource("NoTeenTestSource")
+  public void NoTeenTest(List<Integer> nums, List<Integer> expected) {
+    var actual = NoTeen.noTeen(nums);
+    assertEquals(expected, actual);
+  }
+
+  
 }
