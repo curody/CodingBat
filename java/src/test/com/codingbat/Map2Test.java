@@ -3,13 +3,11 @@ package test.com.codingbat;
 import static org.junit.jupiter.api.Assertions.assertArrayEquals;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-import java.util.HashMap;
 import java.util.Map;
 import java.util.stream.Stream;
 
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
-import org.junit.jupiter.params.provider.CsvSource;
 import org.junit.jupiter.params.provider.MethodSource;
 
 import main.com.codingbat.map2.AllSwap;
@@ -98,7 +96,7 @@ public class Map2Test {
   @ParameterizedTest
   @MethodSource("PairsTestSource")
   public void PairsTest(String[] strings, Map<String, String> expected) {
-    var actual = Pairs.Pairs(strings);
+    var actual = Pairs.pairs(strings);
     assertEquals(expected, actual);
   }
 

@@ -12,7 +12,7 @@ public class Pairs {
    * @param strings Array of strings.
    * @return Map of each string's first character paired with their last.
    */
-  public static Map<String, String> Pairs(String[] strings) {
+  public static Map<String, String> pairs(String[] strings) {
     Map<String, String> res = new HashMap<String, String>();
     for (String s : strings) {
       res.put(s.substring(0, 1), s.substring(s.length()-1, s.length()));
