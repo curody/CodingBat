@@ -13,6 +13,7 @@ import main.com.codingbat.recursion2.GroupNoAdj;
 import main.com.codingbat.recursion2.GroupSum;
 import main.com.codingbat.recursion2.GroupSum5;
 import main.com.codingbat.recursion2.GroupSum6;
+import main.com.codingbat.recursion2.GroupSumClump;
 
 public class Recursion2Test {
   static Stream<Arguments> GroupSumTestSource() {
@@ -118,6 +119,25 @@ public class Recursion2Test {
   @MethodSource("GroupSum5TestSource")
   public void GroupSum5Test(int start, int[] nums, int target, boolean expected) {
     var actual = GroupSum5.groupSum5(start, nums, target);
+    assertEquals(expected, actual);
+  }
+  
+  static Stream<Arguments> GroupSumClumpsTestSource() {
+    return Stream.of(
+      Arguments.of(0, new int[]{2, 4, 8}, 10, true),
+      Arguments.of(0, new int[]{1, 2, 4, 8, 1}, 14, true),
+      Arguments.of(0, new int[]{2, 4, 4, 8}, 14, false),
+      Arguments.of(0, new int[]{8, 2, 2, 1}, 9, true),
+      Arguments.of(0, new int[]{8, 2, 2, 1}, 11, false),
+      Arguments.of(0, new int[]{1}, 1, true),
+      Arguments.of(0, new int[]{9}, 1, false)
+    );
+  }
+
+  @ParameterizedTest
+  @MethodSource("GroupSumClumpsTestSource")
+  public void GroupSumClumpsTest(int start, int[] nums, int target, boolean expected) {
+    var actual = GroupSumClump.groupSumClump(start, nums, target);
     assertEquals(expected, actual);
   }
 }
