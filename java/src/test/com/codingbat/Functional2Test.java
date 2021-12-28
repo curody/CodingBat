@@ -19,6 +19,7 @@ import main.com.codingbat.functional2.NoNeg;
 import main.com.codingbat.functional2.NoTeen;
 import main.com.codingbat.functional2.NoYY;
 import main.com.codingbat.functional2.NoZ;
+import main.com.codingbat.functional2.Two2;
 
 public class Functional2Test {
   static Stream<Arguments> NoNegTestSource() {
@@ -159,6 +160,25 @@ public class Functional2Test {
   @MethodSource("NoYYTestSource")
   public void NoYYTest(List<String> nums, List<String> expected) {
     var actual = NoYY.noYY(nums);
+    assertEquals(expected, actual);
+  }
+
+  static Stream<Arguments> Two2TestSource() {
+    return Stream.of(
+      Arguments.of(Arrays.asList(1, 2, 3), Arrays.asList(4, 6) ),
+      Arguments.of(Arrays.asList(2, 6, 11), Arrays.asList(4) ),
+      Arguments.of(Arrays.asList(0), Arrays.asList(0) ),
+      Arguments.of(Arrays.asList(), Arrays.asList() ),
+      Arguments.of(Arrays.asList(1, 11, 111, 16), Arrays.asList() ),
+      Arguments.of(Arrays.asList(2, 3, 5, 7, 11), Arrays.asList(4, 6, 10, 14) ),
+      Arguments.of(Arrays.asList(3, 1, 4, 1, 6, 99, 0), Arrays.asList(6, 8, 198, 0) )
+    );
+  }
+
+  @ParameterizedTest
+  @MethodSource("Two2TestSource")
+  public void Two2Test(List<Integer> nums, List<Integer> expected) {
+    var actual = Two2.two2(nums);
     assertEquals(expected, actual);
   }
 }
