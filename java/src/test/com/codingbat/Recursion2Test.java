@@ -14,6 +14,7 @@ import main.com.codingbat.recursion2.GroupSum;
 import main.com.codingbat.recursion2.GroupSum5;
 import main.com.codingbat.recursion2.GroupSum6;
 import main.com.codingbat.recursion2.GroupSumClump;
+import main.com.codingbat.recursion2.SplitArray;
 
 public class Recursion2Test {
   static Stream<Arguments> GroupSumTestSource() {
@@ -138,6 +139,31 @@ public class Recursion2Test {
   @MethodSource("GroupSumClumpsTestSource")
   public void GroupSumClumpsTest(int start, int[] nums, int target, boolean expected) {
     var actual = GroupSumClump.groupSumClump(start, nums, target);
+    assertEquals(expected, actual);
+  }
+  
+  static Stream<Arguments> SplitArrayTestSource() {
+    return Stream.of(
+      Arguments.of(new int[]{2, 2}, true),
+      Arguments.of(new int[]{2, 3}, false),
+      Arguments.of(new int[]{5, 2, 3}, true),
+      Arguments.of(new int[]{5, 2, 2}, false),
+      Arguments.of(new int[]{1, 1, 1, 1, 1, 1}, true),
+      Arguments.of(new int[]{1, 1, 1, 1, 1}, false),
+      Arguments.of(new int[]{}, true),
+      Arguments.of(new int[]{1}, false),
+      Arguments.of(new int[]{3, 5}, false),
+      Arguments.of(new int[]{5, 3, 2}, true),
+      Arguments.of(new int[]{2, 2, 10, 10, 1, 1}, true),
+      Arguments.of(new int[]{1, 2, 2, 10, 10, 1, 1}, false),
+      Arguments.of(new int[]{1, 2, 3, 10, 10, 1, 1}, true)
+    );
+  }
+
+  @ParameterizedTest
+  @MethodSource("SplitArrayTestSource")
+  public void SplitArrayTest(int[] nums, boolean expected) {
+    var actual = SplitArray.splitArray(nums);
     assertEquals(expected, actual);
   }
 }
