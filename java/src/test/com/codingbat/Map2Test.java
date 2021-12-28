@@ -11,6 +11,7 @@ import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.CsvSource;
 import org.junit.jupiter.params.provider.MethodSource;
 
+import main.com.codingbat.map2.FirstChar;
 import main.com.codingbat.map2.Pairs;
 import main.com.codingbat.map2.Word0;
 import main.com.codingbat.map2.WordCount;
@@ -133,6 +134,28 @@ public class Map2Test {
   @MethodSource("WordCountTestSource")
   public void WordCountTest(String[] strings, Map<String, String> expected) {
     var actual = WordCount.wordCount(strings);
+    assertEquals(expected, actual);
+  }
+  
+  static Stream<Arguments> FirstCharTestSource() {
+    return Stream.of(
+      Arguments.of((Object) new String[]
+				{ "salt", "tea", "soda", "toast" },
+        Map.of("s", "saltsoda", "t", "teatoast") ),
+      Arguments.of((Object) new String[]
+				{ "aa", "bb", "cc", "aAA", "cCC", "d" },
+        Map.of("a", "aaaAA", "b", "bb", "c", "cccCC", "d", "d") ),
+      Arguments.of((Object) new String[]{}, Map.of() ),
+      Arguments.of((Object) new String[]
+				{ "apple", "bells", "salt", "aardvark", "bells", "sun", "zen", "bells" },
+        Map.of("a", "appleaardvark", "b", "bellsbellsbells", "s", "saltsun", "z", "zen") )
+    );
+  }
+
+  @ParameterizedTest
+  @MethodSource("FirstCharTestSource")
+  public void FirstCharTest(String[] strings, Map<String, String> expected) {
+    var actual = FirstChar.firstChar(strings);
     assertEquals(expected, actual);
   }
 }
