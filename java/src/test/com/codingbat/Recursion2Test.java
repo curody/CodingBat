@@ -9,6 +9,7 @@ import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;
 
+import main.com.codingbat.recursion2.GroupNoAdj;
 import main.com.codingbat.recursion2.GroupSum;
 import main.com.codingbat.recursion2.GroupSum6;
 
@@ -37,6 +38,7 @@ public class Recursion2Test {
     var actual = GroupSum.groupSum(start, nums, target);
     assertEquals(expected, actual);
   }
+
   static Stream<Arguments> GroupSum6TestSource() {
     return Stream.of(
       Arguments.of(0, (Object) new int[]{5, 6, 2}, 8, true),
@@ -64,6 +66,30 @@ public class Recursion2Test {
   @MethodSource("GroupSum6TestSource")
   public void GroupSum6Test(int start, int[] nums, int target, boolean expected) {
     var actual = GroupSum6.groupSum6(start, nums, target);
+    assertEquals(expected, actual);
+  }
+  
+  static Stream<Arguments> GroupNoAdjTestSource() {
+    return Stream.of(
+      Arguments.of(0, new int[]{2, 5, 10, 4}, 12, true),
+      Arguments.of(0, new int[]{2, 5, 10, 4}, 14, false),
+      Arguments.of(0, new int[]{2, 5, 10, 4}, 7, false),
+      Arguments.of(0, new int[]{2, 5, 10, 4, 2}, 7, true),
+      Arguments.of(0, new int[]{2, 5, 10, 4}, 9, true),
+      Arguments.of(0, new int[]{10, 2, 2, 3, 3}, 15, true),
+      Arguments.of(0, new int[]{10, 2, 2, 3, 3}, 7, false),
+      Arguments.of(0, new int[]{}, 0, true),
+      Arguments.of(0, new int[]{1}, 1, true),
+      Arguments.of(0, new int[]{9}, 1, false),
+      Arguments.of(0, new int[]{9}, 0, true),
+      Arguments.of(0, new int[]{5, 10, 4, 1}, 11, true)
+    );
+  }
+
+  @ParameterizedTest
+  @MethodSource("GroupNoAdjTestSource")
+  public void GroupNoAdjTest(int start, int[] nums, int target, boolean expected) {
+    var actual = GroupNoAdj.groupNoAdj(start, nums, target);
     assertEquals(expected, actual);
   }
 }
