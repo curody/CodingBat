@@ -14,6 +14,7 @@ import org.junit.jupiter.params.provider.MethodSource;
 import main.com.codingbat.map2.FirstChar;
 import main.com.codingbat.map2.Pairs;
 import main.com.codingbat.map2.Word0;
+import main.com.codingbat.map2.WordAppend;
 import main.com.codingbat.map2.WordCount;
 import main.com.codingbat.map2.WordLen;
 
@@ -136,7 +137,7 @@ public class Map2Test {
     var actual = WordCount.wordCount(strings);
     assertEquals(expected, actual);
   }
-  
+
   static Stream<Arguments> FirstCharTestSource() {
     return Stream.of(
       Arguments.of((Object) new String[]
@@ -156,6 +157,39 @@ public class Map2Test {
   @MethodSource("FirstCharTestSource")
   public void FirstCharTest(String[] strings, Map<String, String> expected) {
     var actual = FirstChar.firstChar(strings);
+    assertEquals(expected, actual);
+  }
+
+  static Stream<Arguments> WordAppendTestSource() {
+    return Stream.of(
+      Arguments.of((Object) new String[] {"a", "b", "a"}, "a" ),
+      Arguments.of((Object) new String[] {"a", "b", "a", "c", "a", "d", "a"},
+        "aa" ),
+      Arguments.of((Object) new String[] {"a", "", "a"}, "a" ),
+      Arguments.of((Object) new String[] {}, "" ),
+      Arguments.of((Object) new String[] {"a", "b", "b", "a", "a"}, "ba" ),
+      Arguments.of((Object) new String[]
+        {"a", "b", "b", "b", "a", "c", "a", "a"},
+        "baa" ),
+      Arguments.of((Object) new String[]
+        {"a", "b", "b", "b", "a", "c", "a", "a", "a", "b", "a"},
+        "baaba" ),
+      Arguments.of((Object) new String[]
+				{"not", "and", "or", "and", "this", "and", "or", "that", "not"}, "andornot" ),
+      Arguments.of((Object) new String[] {"a", "b", "c"}, "" ),
+      Arguments.of((Object) new String[]
+        {"this", "or", "that", "and", "this", "and", "that"},
+        "thisandthat" ),
+      Arguments.of((Object) new String[] 
+        {"xx", "xx", "yy", "xx", "zz", "yy", "zz", "xx"},
+        "xxyyzzxx" )
+    );
+  }
+
+  @ParameterizedTest
+  @MethodSource("WordAppendTestSource")
+  public void WordAppendTest(String[] strings, String expected) {
+    var actual = WordAppend.wordAppend(strings);
     assertEquals(expected, actual);
   }
 }
