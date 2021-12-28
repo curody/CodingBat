@@ -1,5 +1,6 @@
 package test.com.codingbat;
 
+import static org.junit.jupiter.api.Assertions.assertArrayEquals;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import java.util.HashMap;
@@ -11,6 +12,7 @@ import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.CsvSource;
 import org.junit.jupiter.params.provider.MethodSource;
 
+import main.com.codingbat.map2.AllSwap;
 import main.com.codingbat.map2.FirstChar;
 import main.com.codingbat.map2.Pairs;
 import main.com.codingbat.map2.Word0;
@@ -194,8 +196,6 @@ public class Map2Test {
     assertEquals(expected, actual);
   }
 
-  // wordMultiple\(\[([^\]]*)\]\)[^\{]*\{([^\}]*)\}.*
-  // Arguments.of((Object) new String[]{$1}, Map.of($2) ),
   static Stream<Arguments> WordMultipleTestSource() {
     return Stream.of(
       Arguments.of((Object) new String[]{"a", "b", "a", "c", "b"}, Map.of("a", true, "b", true, "c", false) ),
@@ -212,5 +212,27 @@ public class Map2Test {
   public void WordMultipleTest(String[] strings, Map<String, Boolean> expected) {
     var actual = WordMultiple.wordMultiple(strings);
     assertEquals(expected, actual);
+  }
+
+  static Stream<Arguments> AllSwapTestSource() {
+    return Stream.of(
+      Arguments.of((Object) new String[]{"ab", "ac"}, (Object) new String[]{"ac", "ab"} ),
+      Arguments.of((Object) new String[]{"ax", "bx", "cx", "cy", "by", "ay", "aaa", "azz"}, (Object) new String[]{"ay", "by", "cy", "cx", "bx", "ax", "azz", "aaa"} ),
+      Arguments.of((Object) new String[]{"ax", "bx", "ay", "by", "ai", "aj", "bx", "by"}, (Object) new String[]{"ay", "by", "ax", "bx", "aj", "ai", "by", "bx"} ),
+      Arguments.of((Object) new String[]{"ax", "bx", "cx", "ay", "cy", "aaa", "abb"}, (Object) new String[]{"ay", "bx", "cy", "ax", "cx", "abb", "aaa"} ),
+      Arguments.of((Object) new String[]{"easy", "does", "it", "every", "ice", "eaten"}, (Object) new String[]{"every", "does", "ice", "easy", "it", "eaten"} ),
+      Arguments.of((Object) new String[]{"list", "of", "words", "swims", "over", "lily", "water", "wait"}, (Object) new String[]{"lily", "over", "water", "swims", "of", "list", "words", "wait"} ),
+      Arguments.of((Object) new String[]{"4", "8", "15", "16", "23", "42"}, (Object) new String[]{"42", "8", "16", "15", "23", "4"} ),
+      Arguments.of((Object) new String[]{"aaa"}, (Object) new String[]{"aaa"} ),
+      Arguments.of((Object) new String[]{}, (Object) new String[]{} ),
+      Arguments.of((Object) new String[]{"a", "b", "c", "xx", "yy", "zz"}, (Object) new String[]{"a", "b", "c", "xx", "yy", "zz"} )
+    );
+  }
+
+  @ParameterizedTest
+  @MethodSource("AllSwapTestSource")
+  public void AllSwapTest(String[] strings, String[] expected) {
+    var actual = AllSwap.allSwap(strings);
+    assertArrayEquals(expected, actual);
   }
 }
