@@ -19,12 +19,21 @@ public class RoundSum {
    */
   public static int roundSum(int a, int b, int c) {
     return Arrays.stream(new int[] { a, b, c })
-      .map(n -> roundDigit(n, 10))
+      .map(n -> roundToPlace(n, 10))
       .reduce(0, Integer::sum);
   }
   
-  public static int roundDigit(int n, int digit) {
-    int remainder = n % digit;
-    return remainder < digit/2 ? n - remainder : n - remainder + digit;
+  /**
+   * Rounds number to nearest place. Halfway-points are rounded up.
+   * 
+   * @param num   Integer value.
+   * @param place Integer place to round to.
+   * @return Modified num rounded to nearest place.
+   * 
+   * @example roundToPlace(95, 10) == 100
+   */
+  public static int roundToPlace(int num, int place) {
+    int remainder = num % place;
+    return num - remainder + (remainder < place >> 1 ? 0 : place);
   }
 }
