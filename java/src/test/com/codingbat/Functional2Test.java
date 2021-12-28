@@ -15,6 +15,7 @@ import org.junit.jupiter.params.provider.MethodSource;
 import main.com.codingbat.functional2.No9;
 import main.com.codingbat.functional2.NoNeg;
 import main.com.codingbat.functional2.NoTeen;
+import main.com.codingbat.functional2.NoZ;
 
 public class Functional2Test {
   static Stream<Arguments> NoNegTestSource() {
@@ -75,5 +76,21 @@ public class Functional2Test {
     assertEquals(expected, actual);
   }
 
-  
+  static Stream<Arguments> NoZTestSource() {
+    return Stream.of(
+      Arguments.of(Arrays.asList("aaa", "bbb", "aza"), Arrays.asList("aaa", "bbb") ),
+      Arguments.of(Arrays.asList("hziz", "hzello", "hi"), Arrays.asList("hi") ),
+      Arguments.of(Arrays.asList("hello", "howz", "are", "youz"), Arrays.asList("hello", "are") ),
+      Arguments.of(Arrays.asList(), Arrays.asList() ),
+      Arguments.of(Arrays.asList(""), Arrays.asList("") ),
+      Arguments.of(Arrays.asList("x", "y", "z"), Arrays.asList("x", "y") )
+    );
+  }
+
+  @ParameterizedTest
+  @MethodSource("NoZTestSource")
+  public void NoZTest(List<String> nums, List<String> expected) {
+    var actual = NoZ.noZ(nums);
+    assertEquals(expected, actual);
+  }
 }
