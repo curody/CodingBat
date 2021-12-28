@@ -17,6 +17,7 @@ import main.com.codingbat.map2.Word0;
 import main.com.codingbat.map2.WordAppend;
 import main.com.codingbat.map2.WordCount;
 import main.com.codingbat.map2.WordLen;
+import main.com.codingbat.map2.WordMultiple;
 
 public class Map2Test {
   static Stream<Arguments> Word0TestSource() {
@@ -190,6 +191,26 @@ public class Map2Test {
   @MethodSource("WordAppendTestSource")
   public void WordAppendTest(String[] strings, String expected) {
     var actual = WordAppend.wordAppend(strings);
+    assertEquals(expected, actual);
+  }
+
+  // wordMultiple\(\[([^\]]*)\]\)[^\{]*\{([^\}]*)\}.*
+  // Arguments.of((Object) new String[]{$1}, Map.of($2) ),
+  static Stream<Arguments> WordMultipleTestSource() {
+    return Stream.of(
+      Arguments.of((Object) new String[]{"a", "b", "a", "c", "b"}, Map.of("a", true, "b", true, "c", false) ),
+      Arguments.of((Object) new String[]{"c", "b", "a"}, Map.of("a", false, "b", false, "c", false) ),
+      Arguments.of((Object) new String[]{"c", "c", "c", "c"}, Map.of("c", true) ),
+      Arguments.of((Object) new String[]{}, Map.of() ),
+      Arguments.of((Object) new String[]{"this", "and", "this"}, Map.of("and", false, "this", true) ),
+      Arguments.of((Object) new String[]{"d", "a", "e", "d", "a", "d", "b", "b", "z", "a", "a", "b", "z", "x"}, Map.of("a", true, "b", true, "d", true, "e", false, "x", false, "z", true) )
+    );
+  }
+
+  @ParameterizedTest
+  @MethodSource("WordMultipleTestSource")
+  public void WordMultipleTest(String[] strings, Map<String, Boolean> expected) {
+    var actual = WordMultiple.wordMultiple(strings);
     assertEquals(expected, actual);
   }
 }
