@@ -12,6 +12,7 @@ import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;
 
+import main.com.codingbat.functional2.No34;
 import main.com.codingbat.functional2.No9;
 import main.com.codingbat.functional2.NoLong;
 import main.com.codingbat.functional2.NoNeg;
@@ -112,6 +113,29 @@ public class Functional2Test {
   @MethodSource("NoLongTestSource")
   public void NoLongTest(List<String> nums, List<String> expected) {
     var actual = NoLong.noLong(nums);
+    assertEquals(expected, actual);
+  }
+
+  static Stream<Arguments> No34TestSource() {
+    return Stream.of(
+      Arguments.of(Arrays.asList("a", "bb", "ccc"), Arrays.asList("a", "bb") ),
+      Arguments.of(Arrays.asList("a", "bb", "ccc", "dddd"), Arrays.asList("a", "bb") ),
+      Arguments.of(Arrays.asList("ccc", "dddd", "apple"), Arrays.asList("apple") ),
+      Arguments.of(Arrays.asList("this", "not", "too", "long"), Arrays.asList() ),
+      Arguments.of(Arrays.asList("a", "bbb", "cccc", "xx"), Arrays.asList("a", "xx") ),
+      Arguments.of(Arrays.asList("dddd", "ddd", "xxxxxxx"), Arrays.asList("xxxxxxx") ),
+      Arguments.of(Arrays.asList(), Arrays.asList() ),
+      Arguments.of(Arrays.asList(""), Arrays.asList("") ),
+      Arguments.of(Arrays.asList("empty", "", "empty"), Arrays.asList("empty", "", "empty") ),
+      Arguments.of(Arrays.asList("a"), Arrays.asList("a") ),
+      Arguments.of(Arrays.asList("aaaa", "bbb", "*****", "333"), Arrays.asList("*****") )
+    );
+  }
+
+  @ParameterizedTest
+  @MethodSource("No34TestSource")
+  public void No34Test(List<String> nums, List<String> expected) {
+    var actual = No34.no34(nums);
     assertEquals(expected, actual);
   }
 }
