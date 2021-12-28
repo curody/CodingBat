@@ -17,6 +17,7 @@ import main.com.codingbat.functional2.No9;
 import main.com.codingbat.functional2.NoLong;
 import main.com.codingbat.functional2.NoNeg;
 import main.com.codingbat.functional2.NoTeen;
+import main.com.codingbat.functional2.NoYY;
 import main.com.codingbat.functional2.NoZ;
 
 public class Functional2Test {
@@ -136,6 +137,28 @@ public class Functional2Test {
   @MethodSource("No34TestSource")
   public void No34Test(List<String> nums, List<String> expected) {
     var actual = No34.no34(nums);
+    assertEquals(expected, actual);
+  }
+
+  static Stream<Arguments> NoYYTestSource() {
+    return Stream.of(
+      Arguments.of(Arrays.asList("a", "b", "c"), Arrays.asList("ay", "by", "cy") ),
+      Arguments.of(Arrays.asList("a", "b", "cy"), Arrays.asList("ay", "by") ),
+      Arguments.of(Arrays.asList("xx", "ya", "zz"), Arrays.asList("xxy", "yay", "zzy") ),
+      Arguments.of(Arrays.asList("xx", "yay", "zz"), Arrays.asList("xxy", "zzy") ),
+      Arguments.of(Arrays.asList("yyx", "y", "zzz"), Arrays.asList("zzzy") ),
+      Arguments.of(Arrays.asList("hello", "there"), Arrays.asList("helloy", "therey") ),
+      Arguments.of(Arrays.asList("ya"), Arrays.asList("yay") ),
+      Arguments.of(Arrays.asList(), Arrays.asList() ),
+      Arguments.of(Arrays.asList(""), Arrays.asList("y") ),
+      Arguments.of(Arrays.asList("xx", "yy", "zz"), Arrays.asList("xxy", "zzy") )
+    );
+  }
+
+  @ParameterizedTest
+  @MethodSource("NoYYTestSource")
+  public void NoYYTest(List<String> nums, List<String> expected) {
+    var actual = NoYY.noYY(nums);
     assertEquals(expected, actual);
   }
 }
