@@ -13,6 +13,7 @@ import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;
 
 import main.com.codingbat.functional2.No9;
+import main.com.codingbat.functional2.NoLong;
 import main.com.codingbat.functional2.NoNeg;
 import main.com.codingbat.functional2.NoTeen;
 import main.com.codingbat.functional2.NoZ;
@@ -91,6 +92,26 @@ public class Functional2Test {
   @MethodSource("NoZTestSource")
   public void NoZTest(List<String> nums, List<String> expected) {
     var actual = NoZ.noZ(nums);
+    assertEquals(expected, actual);
+  }
+
+  static Stream<Arguments> NoLongTestSource() {
+    return Stream.of(
+      Arguments.of(Arrays.asList("this", "not", "too", "long"), Arrays.asList("not", "too") ),
+      Arguments.of(Arrays.asList("a", "bbb", "cccc"), Arrays.asList("a", "bbb") ),
+      Arguments.of(Arrays.asList("cccc", "cccc", "cccc"), Arrays.asList() ),
+      Arguments.of(Arrays.asList(), Arrays.asList() ),
+      Arguments.of(Arrays.asList(""), Arrays.asList("") ),
+      Arguments.of(Arrays.asList("empty", "", "empty"), Arrays.asList("") ),
+      Arguments.of(Arrays.asList("a"), Arrays.asList("a") ),
+      Arguments.of(Arrays.asList("aaaa", "bbb", "***", "333"), Arrays.asList("bbb", "***", "333") )
+    );
+  }
+
+  @ParameterizedTest
+  @MethodSource("NoLongTestSource")
+  public void NoLongTest(List<String> nums, List<String> expected) {
+    var actual = NoLong.noLong(nums);
     assertEquals(expected, actual);
   }
 }
