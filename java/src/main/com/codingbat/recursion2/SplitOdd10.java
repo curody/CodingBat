@@ -14,7 +14,7 @@ public class SplitOdd10 {
    */
   public static boolean splitOdd10(int[] nums) {
     int sumNums = sum(nums);
-    if (sumNums < 1 || sumNums % 2 == 0) return false;
+    if (sumNums < 1 || (sumNums & 1) == 0) return false;
     return groupSum(nums, sumNums);
   }
   
@@ -29,7 +29,8 @@ public class SplitOdd10 {
   }
   
   public static boolean validateOdd10(int a, int b) {
-    return a % 2 == 1 && b % 10 == 0 || b % 2 == 1 && a % 10 == 0;
+    return (a & 1) == 1 && (b & 1) == 0 && b % 5 == 0 
+      || (b & 1) == 1 && (a & 1) == 0 && a % 5 == 0;
   }
   
   public static int sum(int[] nums) {
