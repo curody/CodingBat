@@ -4,7 +4,6 @@ import static org.junit.Assert.assertEquals;
 
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
-import org.junit.runners.Parameterized.Parameter;
 
 import main.com.codingbat.logic2.Blackjack;
 import main.com.codingbat.logic2.CloseFar;
