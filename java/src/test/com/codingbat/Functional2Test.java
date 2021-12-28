@@ -19,6 +19,7 @@ import main.com.codingbat.functional2.NoNeg;
 import main.com.codingbat.functional2.NoTeen;
 import main.com.codingbat.functional2.NoYY;
 import main.com.codingbat.functional2.NoZ;
+import main.com.codingbat.functional2.Square56;
 import main.com.codingbat.functional2.Two2;
 
 public class Functional2Test {
@@ -179,6 +180,28 @@ public class Functional2Test {
   @MethodSource("Two2TestSource")
   public void Two2Test(List<Integer> nums, List<Integer> expected) {
     var actual = Two2.two2(nums);
+    assertEquals(expected, actual);
+  }
+
+  static Stream<Arguments> Square56TestSource() {
+    return Stream.of(
+      Arguments.of(Arrays.asList(3, 1, 4), Arrays.asList(19, 11) ),
+      Arguments.of(Arrays.asList(1), Arrays.asList(11) ),
+      Arguments.of(Arrays.asList(2), Arrays.asList(14) ),
+      Arguments.of(Arrays.asList(3), Arrays.asList(19) ),
+      Arguments.of(Arrays.asList(4), Arrays.asList() ),
+      Arguments.of(Arrays.asList(5), Arrays.asList() ),
+      Arguments.of(Arrays.asList(6), Arrays.asList() ),
+      Arguments.of(Arrays.asList(7), Arrays.asList(59) ),
+      Arguments.of(Arrays.asList(1, 2, 3, 4, 5, 6, 7), Arrays.asList(11, 14, 19, 59) ),
+      Arguments.of(Arrays.asList(3, -1, -4, 1, 5, 9), Arrays.asList(19, 11, 11, 91) )
+    );
+  }
+
+  @ParameterizedTest
+  @MethodSource("Square56TestSource")
+  public void Square56Test(List<Integer> nums, List<Integer> expected) {
+    var actual = Square56.square56(nums);
     assertEquals(expected, actual);
   }
 }
