@@ -11,6 +11,7 @@ import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.CsvSource;
 import org.junit.jupiter.params.provider.MethodSource;
 
+import main.com.codingbat.map2.Pairs;
 import main.com.codingbat.map2.Word0;
 import main.com.codingbat.map2.WordLen;
 
@@ -55,6 +56,25 @@ public class Map2Test {
   @MethodSource("WordLenTestSource")
   public void WordLenTest(String[] strings, Map<String, Integer> expected) {
     var actual = WordLen.wordLen(strings);
+    assertEquals(expected, actual);
+  }
+
+  static Stream<Arguments> PairsTestSource() {
+    return Stream.of(
+      Arguments.of((Object) new String[]{"code", "bug"}, Map.of("b", "g", "c", "e")),
+      Arguments.of((Object) new String[]{"man", "moon", "main"}, Map.of("m", "n")),
+      Arguments.of((Object) new String[]{"man", "moon", "good", "night"}, Map.of("g", "d", "m", "n", "n", "t")),
+      Arguments.of((Object) new String[]{}, Map.of()),
+      Arguments.of((Object) new String[]{"a", "b"}, Map.of("a", "a", "b", "b")),
+      Arguments.of((Object) new String[]{"are", "codes", "and", "cods"}, Map.of("a", "d", "c", "s")),
+      Arguments.of((Object) new String[]{"apple", "banana", "tea", "coffee"}, Map.of("a", "e", "b", "a", "c", "e", "t", "a"))
+    );
+  }
+
+  @ParameterizedTest
+  @MethodSource("PairsTestSource")
+  public void PairsTest(String[] strings, Map<String, String> expected) {
+    var actual = Pairs.Pairs(strings);
     assertEquals(expected, actual);
   }
 }
