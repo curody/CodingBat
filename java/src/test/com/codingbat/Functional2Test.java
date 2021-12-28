@@ -12,6 +12,7 @@ import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;
 
+import main.com.codingbat.functional2.No9;
 import main.com.codingbat.functional2.NoNeg;
 
 public class Functional2Test {
@@ -31,6 +32,25 @@ public class Functional2Test {
   @MethodSource("NoNegTestSource")
   public void NoNegTest(List<Integer> nums, List<Integer> expected) {
     var actual = NoNeg.noNeg(nums);
+    assertEquals(expected, actual);
+  }
+
+  static Stream<Arguments> No9TestSource() {
+    return Stream.of(
+      Arguments.of(Arrays.asList(1, 2, 19), Arrays.asList(1, 2) ),
+      Arguments.of(Arrays.asList(9, 19, 29, 3), Arrays.asList(3) ),
+      Arguments.of(Arrays.asList(1, 2, 3), Arrays.asList(1, 2, 3) ),
+      Arguments.of(Arrays.asList(45, 99, 90, 28, 13, 999, 0), Arrays.asList(45, 90, 28, 13, 0) ),
+      Arguments.of(Arrays.asList(), Arrays.asList() ),
+      Arguments.of(Arrays.asList(9), Arrays.asList() ),
+      Arguments.of(Arrays.asList(0, 9, 0), Arrays.asList(0, 0) )
+    );
+  }
+
+  @ParameterizedTest
+  @MethodSource("No9TestSource")
+  public void No9Test(List<Integer> nums, List<Integer> expected) {
+    var actual = No9.no9(nums);
     assertEquals(expected, actual);
   }
 }
