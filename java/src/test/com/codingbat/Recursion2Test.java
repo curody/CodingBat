@@ -14,6 +14,7 @@ import main.com.codingbat.recursion2.GroupSum;
 import main.com.codingbat.recursion2.GroupSum5;
 import main.com.codingbat.recursion2.GroupSum6;
 import main.com.codingbat.recursion2.GroupSumClump;
+import main.com.codingbat.recursion2.Split53;
 import main.com.codingbat.recursion2.SplitArray;
 import main.com.codingbat.recursion2.SplitOdd10;
 
@@ -189,6 +190,26 @@ public class Recursion2Test {
   @MethodSource("SplitOdd10TestSource")
   public void SplitOdd10Test(int[] nums, boolean expected) {
     var actual = SplitOdd10.splitOdd10(nums);
+    assertEquals(expected, actual);
+  }
+  
+  static Stream<Arguments> Split53TestSource() {
+    return Stream.of(
+      Arguments.of(new int[]{1, 1}, true),
+      Arguments.of(new int[]{1, 1, 1}, false),
+      Arguments.of(new int[]{2, 4, 2}, true),
+      Arguments.of(new int[]{2, 2, 2, 1}, false),
+      Arguments.of(new int[]{3, 3, 5, 1}, true),
+      Arguments.of(new int[]{3, 5, 8}, false),
+      Arguments.of(new int[]{2, 4, 6}, true),
+      Arguments.of(new int[]{3, 5, 6, 10, 3, 3}, true)
+    );
+  }
+
+  @ParameterizedTest
+  @MethodSource("Split53TestSource")
+  public void Split53Test(int[] nums, boolean expected) {
+    var actual = Split53.split53(nums);
     assertEquals(expected, actual);
   }
 }
