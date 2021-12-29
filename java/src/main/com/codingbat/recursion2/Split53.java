@@ -14,8 +14,8 @@ public class Split53 {
   public static boolean split53(int[] nums) {
     if (nums.length == 1) return false;
     int target = sum(nums);
-    if (target % 2 == 1) return false;
-    return groupSum(nums, target/2);
+    if ((target & 1) == 1) return false;
+    return groupSum(nums, target >> 1);
   }
   
   public static boolean groupSum(int[] nums, int target) {
