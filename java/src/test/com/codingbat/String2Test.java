@@ -15,6 +15,7 @@ import main.com.codingbat.string2.CountCode;
 import main.com.codingbat.string2.CountHi;
 import main.com.codingbat.string2.DoubleChar;
 import main.com.codingbat.string2.EndOther;
+import main.com.codingbat.string2.XyBalance;
 import main.com.codingbat.string2.XyzThere;
 
 public class String2Test {
@@ -157,6 +158,32 @@ public class String2Test {
   })
   public void BobThereTest(String str, boolean expected) {
     var actual = BobThere.bobThere(str);
+    assertEquals(expected, actual);
+  }
+  
+  @ParameterizedTest
+  @CsvSource({
+    "aaxbby, true",
+    "aaxbb, false",
+    "yaaxbb, false",
+    "yaaxbby, true",
+    "xaxxbby, true",
+    "xaxxbbyx, false",
+    "xxbxy, true",
+    "xxbx, false",
+    "bbb, true",
+    "bxbb, false",
+    "bxyb, true",
+    "xy, true",
+    "y, true",
+    "x, false",
+    "'', true",
+    "yxyxyxyx, false",
+    "yxyxyxyxy, true",
+    "12xabxxydxyxyzz, true"
+  })
+  public void XyBalanceTest(String str, boolean expected) {
+    var actual = XyBalance.xyBalance(str);
     assertEquals(expected, actual);
   }
 }
