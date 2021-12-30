@@ -9,6 +9,7 @@ import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.CsvSource;
 import org.junit.jupiter.params.provider.MethodSource;
 
+import main.com.codingbat.string2.CountHi;
 import main.com.codingbat.string2.DoubleChar;
 
 public class String2Test {
@@ -24,8 +25,25 @@ public class String2Test {
     "., ..",
     "aa, aaaa",
   })
-  public void GroupSumTest(String str, String expected) {
+  public void DoubleCharTest(String str, String expected) {
     var actual = DoubleChar.doubleChar(str);
+    assertEquals(expected, actual);
+  }
+  
+  @ParameterizedTest
+  @CsvSource({
+    "abc hi ho, 1",
+    "ABChi hi, 2",
+    "hihi, 2",
+    "hiHIhi, 2",
+    "'', 0",
+    "h, 0",
+    "hi, 1",
+    "Hi is no HI on ahI, 0",
+    "hiho not HOHIhi, 2"
+  })
+  public void CountHiTest(String str, int expected) {
+    var actual = CountHi.countHi(str);
     assertEquals(expected, actual);
   }
 }
