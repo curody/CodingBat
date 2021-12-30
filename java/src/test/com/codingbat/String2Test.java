@@ -15,6 +15,7 @@ import main.com.codingbat.string2.CountCode;
 import main.com.codingbat.string2.CountHi;
 import main.com.codingbat.string2.DoubleChar;
 import main.com.codingbat.string2.EndOther;
+import main.com.codingbat.string2.MixString;
 import main.com.codingbat.string2.XyBalance;
 import main.com.codingbat.string2.XyzThere;
 
@@ -184,6 +185,27 @@ public class String2Test {
   })
   public void XyBalanceTest(String str, boolean expected) {
     var actual = XyBalance.xyBalance(str);
+    assertEquals(expected, actual);
+  }
+  
+  @ParameterizedTest
+  @CsvSource({
+    "abc, xyz, axbycz",
+    "Hi, There, HTihere",
+    "xxxx, There, xTxhxexre",
+    "xxx, X, xXxx",
+    "2/, 27 around, 22/7 around",
+    "'', Hello, Hello",
+    "Abc, '', Abc",
+    "'', '', ''",
+    "a, b, ab",
+    "ax, b, abx",
+    "a, bx, abx",
+    "So, Long, SLoong",
+    "Long, So, LSoong",
+  })
+  public void MixStringTest(String a, String b, String expected) {
+    var actual = MixString.mixString(a, b);
     assertEquals(expected, actual);
   }
 }
