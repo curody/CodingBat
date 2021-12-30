@@ -5,7 +5,8 @@ import java.util.Map;
 
 public class CountHi {
   /**
-   * Return the number of times that the string "hi" appears anywhere in the given string.
+   * Return the number of times that the string "hi" appears anywhere in the
+   *  given string.
    * 
    * @param str String of characters.
    * @return Count of "hi" substrings.
