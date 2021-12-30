@@ -7,7 +7,7 @@ public class CountCode {
    * "cooe" count.
    * 
    * @param str String of characters.
-   * @return Count of "co*e" where * is any letter.
+   * @return Count of "co*e" where '*' is any letter.
    */
   public static int countCode(String str) {
     String s = "code";
