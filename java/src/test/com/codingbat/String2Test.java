@@ -9,6 +9,7 @@ import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.CsvSource;
 import org.junit.jupiter.params.provider.MethodSource;
 
+import main.com.codingbat.string2.CatDog;
 import main.com.codingbat.string2.CountHi;
 import main.com.codingbat.string2.DoubleChar;
 
@@ -44,6 +45,27 @@ public class String2Test {
   })
   public void CountHiTest(String str, int expected) {
     var actual = CountHi.countHi(str);
+    assertEquals(expected, actual);
+  }
+  
+  @ParameterizedTest
+  @CsvSource({
+    "catdog, true",
+    "catcat, false",
+    "1cat1cadodog, true",
+    "catxxdogxxxdog, false",
+    "catxdogxdogxcat, true",
+    "catxdogxdogxca, false",
+    "dogdogcat, false",
+    "dogogcat, true",
+    "dog, false",
+    "cat, false",
+    "ca, true",
+    "c, true",
+    "'', true",
+  })
+  public void CatDogTest(String str, boolean expected) {
+    var actual = CatDog.catDog(str);
     assertEquals(expected, actual);
   }
 }
