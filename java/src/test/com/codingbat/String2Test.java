@@ -14,6 +14,7 @@ import main.com.codingbat.string2.CountCode;
 import main.com.codingbat.string2.CountHi;
 import main.com.codingbat.string2.DoubleChar;
 import main.com.codingbat.string2.EndOther;
+import main.com.codingbat.string2.XyzThere;
 
 public class String2Test {
   @ParameterizedTest
@@ -112,6 +113,28 @@ public class String2Test {
   })
   public void EndOtherTest(String a, String b, boolean expected) {
     var actual = EndOther.endOther(a, b);
+    assertEquals(expected, actual);
+  }
+  
+  @ParameterizedTest
+  @CsvSource({
+    "abcxyz, true",
+    "abc.xyz, false",
+    "xyz.abc, true",
+    "abcxy, false",
+    "xyz, true",
+    "xy, false",
+    "x, false",
+    "'', false",
+    "abc.xyzxyz, true",
+    "abc.xxyz, true",
+    ".xyz, false",
+    "12.xyz, false",
+    "12xyz, true",
+    "1.xyz.xyz2.xyz, false"
+  })
+  public void XyzThereTest(String str, boolean expected) {
+    var actual = XyzThere.xyzThere(str);
     assertEquals(expected, actual);
   }
 }
