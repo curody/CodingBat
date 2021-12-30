@@ -13,6 +13,7 @@ import main.com.codingbat.string2.CatDog;
 import main.com.codingbat.string2.CountCode;
 import main.com.codingbat.string2.CountHi;
 import main.com.codingbat.string2.DoubleChar;
+import main.com.codingbat.string2.EndOther;
 
 public class String2Test {
   @ParameterizedTest
@@ -89,6 +90,28 @@ public class String2Test {
   })
   public void CountCodeTest(String str, int expected) {
     var actual = CountCode.countCode(str);
+    assertEquals(expected, actual);
+  }
+  
+  @ParameterizedTest
+  @CsvSource({
+    "Hiabc, abc, true",
+    "AbC, HiaBc, true",
+    "abc, abXabc, true",
+    "Hiabc, abcd, false",
+    "Hiabc, bc, true",
+    "Hiabcx, bc, false",
+    "abc, abc, true",
+    "xyz, 12xyz, true",
+    "yz, 12xz, false",
+    "Z, 12xz, true",
+    "12, 12, true",
+    "abcXYZ, abcDEF, false",
+    "ab, ab12, false",
+    "ab, 12ab, true"
+  })
+  public void EndOtherTest(String a, String b, boolean expected) {
+    var actual = EndOther.endOther(a, b);
     assertEquals(expected, actual);
   }
 }
