@@ -9,6 +9,7 @@ import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.CsvSource;
 import org.junit.jupiter.params.provider.MethodSource;
 
+import main.com.codingbat.string2.BobThere;
 import main.com.codingbat.string2.CatDog;
 import main.com.codingbat.string2.CountCode;
 import main.com.codingbat.string2.CountHi;
@@ -135,6 +136,27 @@ public class String2Test {
   })
   public void XyzThereTest(String str, boolean expected) {
     var actual = XyzThere.xyzThere(str);
+    assertEquals(expected, actual);
+  }
+  
+  @ParameterizedTest
+  @CsvSource({
+    "abcbob, true",
+    "b9b, true",
+    "bac, false",
+    "bbb, true",
+    "abcdefb, false",
+    "123abcbcdbabxyz, true",
+    "b12, false",
+    "b1b, true",
+    "b12b1b, true",
+    "bbc, false",
+    "bbb, true",
+    "bb, false",
+    "b, false",
+  })
+  public void BobThereTest(String str, boolean expected) {
+    var actual = BobThere.bobThere(str);
     assertEquals(expected, actual);
   }
 }
